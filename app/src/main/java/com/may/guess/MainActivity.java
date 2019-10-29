@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -27,13 +28,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
         random = new Random().nextInt(10)+1;
         Log.d(TAG,"secret:"+random);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                reset();
             }
+
         });
         ;
     }
@@ -44,14 +50,38 @@ public class MainActivity extends AppCompatActivity {
         TextView info = findViewById(R.id.tv_info);
         TextView guess = findViewById(R.id.tv_guessTime);
         int  num = Integer.valueOf(answer.getText().toString());
+
+
+
         if (num==random){
-            info.setText("答對了");
+           // info.setText("答對了");
+            new AlertDialog.Builder(MainActivity.this)
+                    .setMessage("BINGO")
+                    .setTitle("棒棒噠")
+                    .setPositiveButton("ok",null)
+                    .show();
         }else if (num<random){
-            info.setText("大一點");
+            //info.setText("大一點");
+            new AlertDialog.Builder(MainActivity.this)
+                    .setMessage("bigger")
+                    .setTitle("haha")
+                    .setPositiveButton("ok",null)
+                    .show();
         }else if (num>random){
-            info.setText("小一點");
+            //info.setText("小一點");
+            new AlertDialog.Builder(MainActivity.this)
+                    .setMessage("smaller")
+                    .setTitle("haha")
+                    .setPositiveButton("ok",null)
+                    .show();
         }
         guess.setText("猜了"+Integer.toString(guessTime)+"次");
+
+
+    }
+
+    public void reset(){
+        int num = new Random().nextInt(10)+1;
     }
 
     @Override
@@ -60,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -18,18 +18,21 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+//alerdialog 更動其上面的文字+Listener的使用示範
+//範例（期中考）：Shop
+
 public class MainActivity extends AppCompatActivity {
     int guessTime = 0;
     private int random;
     String TAG = MainActivity.class.getSimpleName();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         random = new Random().nextInt(10)+1;
         Log.d(TAG,"secret:"+random);
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reset(){
+        int secret = new Random().nextInt(10)+1;
         int num = new Random().nextInt(10)+1;
     }
 
